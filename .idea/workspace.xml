@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2fcf564-eebb-4216-8a70-be1d9d5edd90" name="Changes" comment="added getter/setter, direction checker, score counter and text screen.">
+    <list default="true" id="a2fcf564-eebb-4216-8a70-be1d9d5edd90" name="Changes" comment="added epileptic background color switcher">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663740353611</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added epileptic background color switcher">
+      <created>1663752580082</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663752580082</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +124,7 @@
     <MESSAGE value="not work" />
     <MESSAGE value="add bodyParts Snake, but dont work" />
     <MESSAGE value="added getter/setter, direction checker, score counter and text screen." />
-    <option name="LAST_COMMIT_MESSAGE" value="added getter/setter, direction checker, score counter and text screen." />
+    <MESSAGE value="added epileptic background color switcher" />
+    <option name="LAST_COMMIT_MESSAGE" value="added epileptic background color switcher" />
   </component>
 </project>
