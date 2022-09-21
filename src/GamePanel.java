@@ -31,6 +31,7 @@ public class GamePanel extends JPanel {
     private int green;
     private int blue;
     private int colorCounter;
+    private int tailColor;
 
     GamePanel() {
         random = new Random();
@@ -59,7 +60,10 @@ public class GamePanel extends JPanel {
             g.setColor(new Color(0, 255, 0));
             g.fillRect(xSnake[0], ySnake[0], UNIT_SIZE, UNIT_SIZE);
             for (int i = 1; i < bodyParts; i++) {
-                g.setColor(new Color(0, 200 - (i * 2), 0));
+                if (200-(i*2)>20){
+                    tailColor = 200-(i*2);
+                }
+                g.setColor(new Color(0, tailColor, 0));
                 g.fillRect(xSnake[i], ySnake[i], UNIT_SIZE, UNIT_SIZE);
             }
 
@@ -157,7 +161,7 @@ public class GamePanel extends JPanel {
         if (xSnake[0] == xBonusApple && ySnake[0] == yBonusApple) {
             bodyParts += bonusCost;
             // fixes drawing bug for [0,0] coordinates
-            for (int i = bodyParts - 1; i > bodyParts - 5; i--) {
+            for (int i = bodyParts - 1; i > bodyParts - bonusCost; i--) {
                 xSnake[i] = -200;
             }
             score += bonusCost;
