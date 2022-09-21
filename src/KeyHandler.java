@@ -3,9 +3,11 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    KeyHandler(GamePanel gp){
-        this.gp=gp;
+
+    KeyHandler(GamePanel gp) {
+        this.gp = gp;
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -14,27 +16,36 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println(e.getKeyCode());
-        switch(e.getKeyCode()){
+        switch (e.getKeyCode()) {
             case 37 -> {
-                if(!gp.direction.equals("right")) {
-                    gp.direction = "left";
+                if (!gp.getDirection().equals("right") &&
+                        gp.getxSnake()[0] - gp.getUNIT_SIZE() != gp.getxSnake()[1] &&
+                        gp.getySnake()[0] != gp.getySnake()[1]) {
+                    gp.setDirection("left");
                 }
             }
             case 38 -> {
-                if(!gp.direction.equals("down")) {
-                    gp.direction = "up";
+                if (!gp.getDirection().equals("down") &&
+                        gp.getxSnake()[0] != gp.getxSnake()[1] &&
+                        gp.getySnake()[0] - gp.getUNIT_SIZE() != gp.getySnake()[1]) {
+                    gp.setDirection("up");
                 }
             }
             case 39 -> {
-                if(!gp.direction.equals("left")) {
-                    gp.direction = "right";
+                if (!gp.getDirection().equals("left") &&
+                        gp.getxSnake()[0] + gp.getUNIT_SIZE() != gp.getxSnake()[1] &&
+                        gp.getySnake()[0] != gp.getySnake()[1]) {
+                    gp.setDirection("right");
                 }
             }
             case 40 -> {
-                if(!gp.direction.equals("up")) {
-                    gp.direction = "down";
+                if (!gp.getDirection().equals("up") &&
+                        gp.getxSnake()[0] != gp.getxSnake()[1] &&
+                        gp.getySnake()[0] + gp.getUNIT_SIZE() != gp.getySnake()[1]) {
+                    gp.setDirection("down");
                 }
             }
+            case 82 -> gp.startGame();
         }
     }
 
