@@ -19,18 +19,24 @@ public class GamePanel extends JPanel {
     private int score;
     private String direction;
 
+    private final int COLOR_MAX_LIMIT = 60;
+    private final int COLOR_MIN_LIMIT = 0;
+    private int red;
+    private int green;
+    private int blue;
+    private int counter;
+
     GamePanel() {
         random = new Random();
         timer = new Timer(DELAY, e -> {
             update();
             repaint();
         });
-
         this.addKeyListener(new KeyHandler(this));
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this.setBackground(Color.black);
         startGame();
+        this.setBackground(new Color(red, green, blue));
 
     }
 
@@ -57,7 +63,39 @@ public class GamePanel extends JPanel {
             g.setColor(new Color(235, 85, 52));
             g.setFont(new Font("MV Boli", Font.BOLD, SCREEN_WIDTH / 30)); // 20
             g.drawString("score: " + score, UNIT_SIZE, UNIT_SIZE * 2);
+
+            // Background
+            if (counter < 2) {
+                counter++;
+            } else {
+                counter = 0;
+                this.setBackground(new Color(red, green, blue));
+                System.out.println("RED: " + red);
+                System.out.println("GREEN: " + green);
+                System.out.println("BLUE: " + blue);
+                System.out.println();
+                if (green == blue && blue == COLOR_MIN_LIMIT && red < COLOR_MAX_LIMIT) {
+                    red++;
+                } else {
+                    if (red == COLOR_MAX_LIMIT && green < COLOR_MAX_LIMIT && blue == COLOR_MIN_LIMIT) {
+                        green++;
+                    } else if (red != COLOR_MIN_LIMIT && blue == COLOR_MIN_LIMIT) {
+                        red--;
+                    } else if (green == COLOR_MAX_LIMIT && blue < COLOR_MAX_LIMIT) {
+                        blue++;
+                    } else if (green != COLOR_MIN_LIMIT && red == COLOR_MIN_LIMIT) {
+                        green--;
+                    } else if (blue == COLOR_MAX_LIMIT && red < COLOR_MAX_LIMIT) {
+                        red++;
+                    } else if (blue != COLOR_MIN_LIMIT) {
+                        blue--;
+                    }
+                }
+            }
+
+
         } else {
+            this.setBackground(new Color(0, 0, 0));
             // Text
             g.setColor(new Color(255, 0, 0));
             g.setFont(new Font("MV Boli", Font.BOLD, SCREEN_WIDTH / 12)); // 50
@@ -107,12 +145,14 @@ public class GamePanel extends JPanel {
     }
 
     public void startGame() {
+        red = green = blue = COLOR_MIN_LIMIT;
         direction = "right";
         xSnake[0] = UNIT_SIZE * 2;
         ySnake[0] = random.nextInt(SCREEN_WIDTH / UNIT_SIZE) * UNIT_SIZE;
         score = 0;
         bodyParts = 2;
         spawnApple();
+        timer.setDelay(DELAY);
         timer.start();
     }
 
